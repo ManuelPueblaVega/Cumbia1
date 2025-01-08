@@ -1,6 +1,5 @@
 <html>
 <head>
-    <base href="https://raw.githubusercontent.com/" target="_blank">
     <meta charset="UTF-8">
     <title>El Ritmo Perdido de La Escoba</title>
     <style>
@@ -130,7 +129,9 @@
         </div>
 
         <div class="score-container" id="scoreContainer">
-            <img src="Partitura del Guiro.png" alt="Partitura del Güiro" id="scoreImage">
+            <img src="https://raw.githubusercontent.com/ManuelPueblaVega/Cumbia1/main/guiro.png" 
+                 alt="Partitura del Güiro" 
+                 id="scoreImage">
             <p class="message">¡Correcto! Practica este ritmo con tu grupo para luego interpretarlo junto con toda la clase y enviarlo a Los Gaiteros de San Jacinto.</p>
         </div>
     </div>
@@ -144,15 +145,12 @@
             const scoreImage = document.getElementById('scoreImage');
             
             if (answer === 'güiro' || answer === 'guiro') {
-                // Animación del candado
                 lock.classList.add('unlock-animation');
                 
-                // Después de la animación del candado, mostrar la partitura
                 setTimeout(() => {
                     riddleSection.classList.add('hidden');
                     scoreContainer.style.display = 'block';
                     
-                    // Pequeña pausa antes de la animación de aparición
                     setTimeout(() => {
                         scoreContainer.classList.add('visible');
                         scoreImage.classList.add('visible');
