@@ -1,99 +1,115 @@
-<html><head><base href="https://raw.githubusercontent.com/" target="_blank">
-<meta charset="UTF-8">
-<title>El Ritmo Perdido de La Escoba</title>
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        height: 100vh;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-    }
+<html>
+<head>
+    <base href="https://raw.githubusercontent.com/" target="_blank">
+    <meta charset="UTF-8">
+    <title>El Ritmo Perdido de La Escoba</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
 
-    .container {
-        text-align: center;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 2rem;
-        border-radius: 15px;
-        backdrop-filter: blur(10px);
-        max-width: 600px;
-    }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+        }
 
-    .lock {
-        width: 100px;
-        height: 100px;
-        margin: 20px auto;
-        transition: transform 0.5s;
-    }
+        .lock {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            transition: transform 0.5s;
+        }
 
-    .riddle {
-        font-size: 1.2rem;
-        margin: 20px 0;
-        line-height: 1.6;
-        white-space: pre-line;
-    }
+        .riddle {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
 
-    input {
-        padding: 10px 15px;
-        border: none;
-        border-radius: 25px;
-        font-size: 1rem;
-        width: 200px;
-        margin: 10px 0;
-        text-align: center;
-    }
+        input {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            width: 200px;
+            margin: 10px 0;
+            text-align: center;
+        }
 
-    button {
-        background: #4CAF50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 25px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: transform 0.2s;
-    }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
 
-    button:hover {
-        transform: scale(1.05);
-    }
+        button:hover {
+            transform: scale(1.05);
+        }
 
-    .score-container {
-        display: none;
-        margin-top: 20px;
-    }
+        .score-container {
+            display: none;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
 
-    .score-container img {
-        max-width: 100%;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
+        .score-container.visible {
+            opacity: 1;
+        }
 
-    .message {
-        margin-top: 15px;
-        font-size: 1.1rem;
-        line-height: 1.5;
-        color: #fff;
-    }
+        .score-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease-in;
+        }
 
-    @keyframes unlockAnimation {
-        0% { transform: rotate(0deg); }
-        25% { transform: rotate(-20deg); }
-        75% { transform: rotate(20deg); }
-        100% { transform: rotate(0deg); }
-    }
+        .score-container img.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
 
-    .unlock-animation {
-        animation: unlockAnimation 0.5s ease-in-out;
-    }
+        .message {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #fff;
+        }
 
-    .hidden {
-        display: none;
-    }
-</style>
+        @keyframes unlockAnimation {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-20deg); }
+            75% { transform: rotate(20deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .unlock-animation {
+            animation: unlockAnimation 0.5s ease-in-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -114,8 +130,8 @@
         </div>
 
         <div class="score-container" id="scoreContainer">
-            <img src="image/guiro.png" alt="Partitura del Güiro" id="scoreImage">
-            <p class="message">Practica este ritmo con tu grupo para luego interpretarlo junto con toda la clase y enviarlo a Los Gaiteros de San Jacinto.</p>
+            <img src="Partitura-del-Guiro.png" alt="Partitura del Güiro" id="scoreImage">
+            <p class="message">¡Correcto! Practica este ritmo con tu grupo para luego interpretarlo junto con toda la clase y enviarlo a Los Gaiteros de San Jacinto.</p>
         </div>
     </div>
 
@@ -125,12 +141,22 @@
             const lock = document.querySelector('.lock');
             const scoreContainer = document.getElementById('scoreContainer');
             const riddleSection = document.getElementById('riddleSection');
+            const scoreImage = document.getElementById('scoreImage');
             
             if (answer === 'güiro' || answer === 'guiro') {
+                // Animación del candado
                 lock.classList.add('unlock-animation');
+                
+                // Después de la animación del candado, mostrar la partitura
                 setTimeout(() => {
                     riddleSection.classList.add('hidden');
                     scoreContainer.style.display = 'block';
+                    
+                    // Pequeña pausa antes de la animación de aparición
+                    setTimeout(() => {
+                        scoreContainer.classList.add('visible');
+                        scoreImage.classList.add('visible');
+                    }, 50);
                 }, 500);
             } else {
                 lock.classList.add('unlock-animation');
